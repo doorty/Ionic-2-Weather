@@ -1,16 +1,27 @@
-<ion-navbar *navbar>
-  <ion-title>
-    Home
-  </ion-title>
+<ion-navbar primary *navbar>
+  <ion-buttons start>
+    <button (click)="addWeather()">
+      Add
+    </button>
+  </ion-buttons>
+  <ion-title><img src="img/logo.png" class="logo-title"></ion-title>
 </ion-navbar>
 
-<ion-content class="home">
-  <ion-card>
-    <ion-card-header>
-      Card Header
-    </ion-card-header>
-    <ion-card-content>
-      Hello World
-    </ion-card-content>
-  </ion-card>
+<ion-content padding class="home">
+
+  <ion-list>
+    
+    <weather
+      [weather]="localWeather"
+      (viewMore)="viewForecast($event)">
+    </weather>
+      
+    <weather
+      *ngFor="#weather of weatherList"
+      [weather]="weather"
+      (viewMore)="viewForecast($event)">
+    </weather>
+
+  </ion-list>
+  
 </ion-content>
