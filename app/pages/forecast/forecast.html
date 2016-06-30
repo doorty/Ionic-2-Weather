@@ -1,0 +1,16 @@
+<ion-navbar *navbar>
+  <ion-title>{{cityWeather.name}}: 7 day forecast</ion-title>
+</ion-navbar>
+
+<ion-content padding class="forecast">
+  <ion-list>
+    <ion-item *ngFor="#weather of forecast">
+      <ion-thumbnail item-left>
+        <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
+      </ion-thumbnail>
+      <h2>{{weather.dt * 1000 | date: 'EEEE' }}</h2>
+      <h3>High {{weather.temp.max | temperature}}</h3>
+      <h3>Low {{weather.temp.min | temperature}}</h3>
+    </ion-item>
+  </ion-list>
+</ion-content>

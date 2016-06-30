@@ -1,0 +1,9 @@
+<ion-item *ngIf="weather" (click)="hitWeather(weather)">
+  <ion-thumbnail item-left>
+    <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
+  </ion-thumbnail>
+  <h2>{{weather.main.temp | temperature}}</h2>
+  <h3>{{weather.name}}</h3>
+  <p>Low: {{weather.main.temp_min | temperature}} High: {{weather.main.temp_max | temperature}}</p>
+  <ion-icon name="arrow-forward" item-right></ion-icon>
+</ion-item>
