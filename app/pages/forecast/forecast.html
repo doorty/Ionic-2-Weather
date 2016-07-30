@@ -1,10 +1,11 @@
-<ion-navbar *navbar>
-  <ion-title>{{cityWeather.name}}: 7 day forecast</ion-title>
-</ion-navbar>
-
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>{{cityWeather.name}}: 7 day forecast</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding class="forecast">
   <ion-list>
-    <ion-item *ngFor="#weather of forecast">
+    <ion-item *ngFor="let weather of forecast">
       <ion-thumbnail item-left>
         <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
       </ion-thumbnail>

@@ -1,14 +1,14 @@
-import 'es6-shim';
-import {App, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {Weather} from './providers/weather/weather';
 import {StorageService} from './providers/storage/storage';
 
-@App({
+
+@Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers: [StorageService, Weather],
-  config: {} 
+  providers: [StorageService, Weather]
 })
 export class MyApp {
   rootPage: any = HomePage;
@@ -21,3 +21,5 @@ export class MyApp {
     });
   }
 }
+
+ionicBootstrap(MyApp);

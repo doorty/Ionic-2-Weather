@@ -1,4 +1,4 @@
-import {Page, Modal, NavController} from 'ionic-angular';
+import {Modal, NavController} from 'ionic-angular';
 import {AddPage} from '../add/add';
 import {Weather} from '../../providers/weather/weather';
 import {Observable} from 'rxjs/Observable';
@@ -7,8 +7,9 @@ import {TemperaturePipe} from '../../pipes/temperature';
 import {ForecastPage} from '../forecast/forecast';
 import {WeatherEl} from '../../components/weather/weather';
 import {StorageService} from '../../providers/storage/storage';
+import {Component} from '@angular/core';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/home/home.html',
   pipes: [TemperaturePipe],
   directives: [WeatherEl]

@@ -1,6 +1,7 @@
-import {Page, ViewController} from 'ionic-angular';
+import {ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/add/add.html',
 })
 export class AddPage {

@@ -1,8 +1,9 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {Weather} from '../../providers/weather/weather';
 import {TemperaturePipe} from '../../pipes/temperature';
+import {Component} from '@angular/core';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/forecast/forecast.html',
   pipes: [TemperaturePipe]
 })
