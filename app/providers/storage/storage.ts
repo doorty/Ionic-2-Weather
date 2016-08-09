@@ -11,7 +11,7 @@ export class StorageService {
   constructor() {
     this.storage = new Storage(SqlStorage, { name: this.storageDb });
     this.getWeathers().then(data => {
-      this.weathers = JSON.parse(data); 
+      this.weathers = (data !== undefined && data !== null) ? JSON.parse(data) : []; 
     });
   }
 
@@ -26,8 +26,21 @@ export class StorageService {
     else {
       this.weathers.push(weather);
     }
-    
-    this.storage.set(this.storageDb, JSON.stringify(this.weathers));
+
+    // remove cyclical objects
+    let seen = [];
+
+    let result = JSON.stringify(this.weathers, function(key, val) {
+      if (val != null && typeof val == "object") {
+            if (seen.indexOf(val) >= 0) {
+                return;
+            }
+            seen.push(val);
+        }
+        return val;
+    });
+
+    this.storage.set(this.storageDb, result);
   }
   
 }

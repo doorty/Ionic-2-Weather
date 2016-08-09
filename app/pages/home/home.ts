@@ -1,4 +1,4 @@
-import {Modal, NavController} from 'ionic-angular';
+import {ModalController, NavController} from 'ionic-angular';
 import {AddPage} from '../add/add';
 import {Weather} from '../../providers/weather/weather';
 import {Observable} from 'rxjs/Observable';
@@ -21,7 +21,8 @@ export class HomePage {
   constructor(
     public nav: NavController,
     public weather: Weather,
-    public storage: StorageService) {
+    public storage: StorageService,
+    private modalCtrl: ModalController) {
       this.weatherList = [];
       this.getLocalWeather();
       this.getStoredWeather();
@@ -30,18 +31,18 @@ export class HomePage {
   getStoredWeather() {
     this.storage.getWeathers().then((weathers) => {
       console.log(weathers);
-      this.weatherList = JSON.parse(weathers) || [];
+      this.weatherList = (weathers !== undefined && weathers !== null) ? JSON.parse(weathers) : []; 
     });
   }
 
   addWeather() {
-    let addWeatherModal = Modal.create(AddPage);
-    addWeatherModal.onDismiss((data) => {
+    let addWeatherModal = this.modalCtrl.create(AddPage);
+    addWeatherModal.onDidDismiss((data) => {
       if (data) {
         this.getWeather(data.city, data.country);
       }
     });
-    this.nav.present(addWeatherModal);
+    addWeatherModal.present(addWeatherModal);
   }
 
   getWeather(city: string, country: string) {
@@ -69,7 +70,6 @@ export class HomePage {
   }
   
   viewForecast(cityWeather) {
-    console.log('vew forecast');
     this.nav.push(ForecastPage, { cityWeather: cityWeather });
   }
 }

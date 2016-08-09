@@ -15,7 +15,7 @@ export class ForecastPage {
     public nav: NavController,
     public navParams: NavParams,
     public weather: Weather) {
-    this.cityWeather = navParams.get('cityWeather');
+    this.cityWeather = this.navParams.get('cityWeather');
     this.getForecast(this.cityWeather.id);
   }
   
@@ -26,7 +26,7 @@ export class ForecastPage {
         data => {
           this.forecast = data.list;
         },
-        err => console.log(err),
+        err => console.log('err: ' + err),
         () => console.log('forecast complete')
       )
   }
